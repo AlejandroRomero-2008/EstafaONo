@@ -9,6 +9,24 @@
   <link rel="stylesheet" href="src/estilo.css">
 </head>
 <body>
+  <!-- Fondo animado futurista -->
+  <div class="fondo-animado" aria-hidden="true">
+    <div class="rejilla-fondo"></div>
+    <div class="orbe orbe-1"></div>
+    <div class="orbe orbe-2"></div>
+    <div class="orbe orbe-3"></div>
+  </div>
+
+  <!-- Flash de pantalla completa al responder -->
+  <div id="flash-overlay" class="flash-overlay" role="status" aria-live="assertive" aria-hidden="true">
+    <div id="flash-icono" class="flash-icono"></div>
+    <div id="flash-texto" class="flash-texto"></div>
+    <div id="flash-subtexto" class="flash-subtexto"></div>
+  </div>
+
+  <!-- Lienzo para el confeti final -->
+  <canvas id="confeti-canvas" aria-hidden="true"></canvas>
+
   <div class="app" role="application" aria-label="Juego ¿Estafa o no?">
 
     <!-- ============================================

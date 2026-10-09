@@ -40,8 +40,14 @@ export const CONFIG = {
   TOTAL_RONDAS: 5,
   /** Puntos por acierto */
   PUNTOS_ACIERTO: 10,
+  /** Puntuación máxima posible (5 rondas × 10 puntos) */
+  PUNTUACION_MAXIMA: 50,
   /** Puntos mínimos para victoria */
   PUNTOS_VICTORIA: 30,
+  /** Duración del flash de pantalla al responder (milisegundos) */
+  DURACION_FLASH_MS: 1400,
+  /** Duración del confeti final (milisegundos) */
+  DURACION_CONFETI_MS: 5000,
   /** Tamaño mínimo de botón táctil (píxeles) */
   MIN_TOUCH_TARGET: 44,
   /** Tamaño mínimo de fuente (píxeles) */
@@ -302,6 +308,13 @@ export function reiniciar(estado: Estado): boolean {
  */
 export function haGanado(estado: Estado): boolean {
   return estado.puntuacion >= CONFIG.PUNTOS_VICTORIA;
+}
+
+/**
+ * Verifica si el jugador obtuvo puntuación perfecta (50 puntos, todas correctas)
+ */
+export function puntuacionPerfecta(estado: Estado): boolean {
+  return estado.puntuacion === CONFIG.PUNTUACION_MAXIMA;
 }
 
 /**

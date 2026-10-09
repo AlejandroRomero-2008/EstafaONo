@@ -8,36 +8,36 @@
    ============================================ */
 
 :root {
-  /* Colores principales */
-  --color-primary: #1e3a5f;      /* Azul oscuro - interfaz principal */
-  --color-primary-light: #2d4a7a;
-  --color-primary-dark: #152a42;
+  /* Colores principales - tema oscuro futurista */
+  --color-primary: #38bdf8;      /* Azul cielo neón - interfaz principal */
+  --color-primary-light: #7dd3fc;
+  --color-primary-dark: #0ea5e9;
 
-  --color-danger: #c0392b;       /* Rojo - alertas, peligro */
-  --color-danger-light: #e74c3c;
-  --color-danger-bg: #fdf2f2;
+  --color-danger: #ef4444;       /* Rojo - alertas, peligro */
+  --color-danger-light: #f87171;
+  --color-danger-bg: rgba(239, 68, 68, 0.15);
 
-  --color-success: #27ae60;      /* Verde - correcto, verificado */
-  --color-success-light: #2ecc71;
-  --color-success-bg: #f0fdf4;
+  --color-success: #22c55e;      /* Verde - correcto, verificado */
+  --color-success-light: #4ade80;
+  --color-success-bg: rgba(34, 197, 94, 0.15);
 
-  --color-warning: #f39c12;      /* Amarillo - advertencias */
-  --color-warning-light: #f1c40f;
-  --color-warning-bg: #fffbeb;
+  --color-warning: #eab308;      /* Amarillo - advertencias */
+  --color-warning-light: #facc15;
+  --color-warning-bg: rgba(234, 179, 8, 0.15);
 
-  /* Neutros */
+  /* Neutros (modo oscuro) */
   --color-white: #ffffff;
-  --color-bg: #f8fafc;           /* Fondo general */
-  --color-surface: #ffffff;      /* Tarjetas, superficies */
-  --color-border: #e2e8f0;
-  --color-text: #1e293b;         /* Texto principal */
-  --color-text-secondary: #64748b;
-  --color-text-muted: #94a3b8;
+  --color-bg: #0a1628;           /* Fondo general azul muy oscuro */
+  --color-surface: rgba(15, 32, 58, 0.72);      /* Tarjetas glassmorphism */
+  --color-border: rgba(56, 189, 248, 0.18);
+  --color-text: #e2e8f0;         /* Texto principal */
+  --color-text-secondary: #94a3b8;
+  --color-text-muted: #64748b;
 
   /* Sombras */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px -4px rgba(56, 189, 248, 0.15), 0 2px 8px -2px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 30px -6px rgba(56, 189, 248, 0.25), 0 8px 20px -8px rgba(0, 0, 0, 0.5);
 
   /* Radio */
   --radius-sm: 6px;
@@ -55,7 +55,7 @@
 
   /* Tamaños base */
   --font-size-base: 16px;
-  --font-size-sm: 14px;
+  --font-size-sm: 16px;
   --font-size-lg: 18px;
   --font-size-xl: 22px;
   --font-size-2xl: 28px;
@@ -102,6 +102,196 @@ body {
   flex-direction: column;
   align-items: center;
   padding: var(--space-4);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ============================================
+   FONDO ANIMADO FUTURISTA
+   ============================================ */
+
+.fondo-animado {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0a1628 0%, #10233f 45%, #0a1a30 100%);
+}
+
+/* Capa de gradiente que se mueve */
+.fondo-animado::before {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.25), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.22), transparent 42%),
+    radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.18), transparent 45%);
+  animation: fondoFlotante 18s ease-in-out infinite alternate;
+}
+
+@keyframes fondoFlotante {
+  0%   { transform: translate(0%, 0%) scale(1); }
+  33%  { transform: translate(4%, -3%) scale(1.05); }
+  66%  { transform: translate(-3%, 4%) scale(0.97); }
+  100% { transform: translate(0%, 0%) scale(1); }
+}
+
+/* Rejilla tipo "grid" futurista */
+.rejilla-fondo {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(56, 189, 248, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.07) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  animation: rejillaMovimiento 25s linear infinite;
+}
+
+@keyframes rejillaMovimiento {
+  to { background-position: 48px 48px, 48px 48px; }
+}
+
+/* Orbes de luz flotantes */
+.orbe {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.55;
+  will-change: transform;
+}
+
+.orbe-1 {
+  width: 340px; height: 340px;
+  top: -80px; left: -100px;
+  background: #3b82f6;
+  animation: orbeFlotar 14s ease-in-out infinite alternate;
+}
+
+.orbe-2 {
+  width: 300px; height: 300px;
+  bottom: -100px; right: -80px;
+  background: #8b5cf6;
+  animation: orbeFlotar 19s ease-in-out infinite alternate-reverse;
+}
+
+.orbe-3 {
+  width: 220px; height: 220px;
+  top: 55%; left: 45%;
+  background: #06b6d4;
+  animation: orbeFlotar 23s ease-in-out infinite alternate;
+}
+
+@keyframes orbeFlotar {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(45px, -35px) scale(1.12); }
+  100% { transform: translate(-30px, 40px) scale(0.92); }
+}
+
+/* ============================================
+   FLASH DE PANTALLA COMPLETA (feedback)
+   ============================================ */
+
+.flash-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 200ms ease, visibility 200ms ease;
+}
+
+.flash-overlay.activo {
+  opacity: 1;
+  visibility: visible;
+}
+
+.flash-overlay.correcto {
+  background: radial-gradient(ellipse at center, rgba(46, 204, 113, 0.92), rgba(16, 60, 40, 0.95));
+}
+
+.flash-overlay.incorrecto {
+  background: radial-gradient(ellipse at center, rgba(231, 76, 60, 0.92), rgba(90, 20, 12, 0.95));
+}
+
+.flash-texto {
+  font-size: clamp(56px, 16vw, 130px);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.75), 0 0 80px currentColor;
+  animation: textoImpacto 700ms cubic-bezier(0.2, 1.4, 0.4, 1) both;
+}
+
+.flash-overlay.correcto .flash-texto {
+  color: #d1fae5;
+}
+
+.flash-overlay.incorrecto .flash-texto {
+  color: #fecaca;
+}
+
+.flash-icono {
+  width: clamp(90px, 22vw, 180px);
+  height: clamp(90px, 22vw, 180px);
+  animation: iconoImpacto 700ms cubic-bezier(0.2, 1.4, 0.4, 1) both;
+}
+
+.flash-subtexto {
+  font-size: clamp(16px, 4vw, 26px);
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.92);
+  animation: textoImpacto 900ms ease both;
+}
+
+@keyframes textoImpacto {
+  0%   { opacity: 0; transform: scale(0.3) rotate(-6deg); }
+  60%  { opacity: 1; transform: scale(1.15) rotate(2deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+@keyframes iconoImpacto {
+  0%   { opacity: 0; transform: scale(0.2); }
+  55%  { opacity: 1; transform: scale(1.25); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* Vibración sutil del contenido al marcar */
+.shake {
+  animation: shake 400ms ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-10px); }
+  40% { transform: translateX(9px); }
+  60% { transform: translateX(-7px); }
+  80% { transform: translateX(5px); }
+}
+
+/* ============================================
+   CONFETI
+   ============================================ */
+
+#confeti-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  pointer-events: none;
+  display: none;
+}
+
+#confeti-canvas.activo {
+  display: block;
 }
 
 /* ============================================
@@ -156,6 +346,7 @@ body {
   color: var(--color-primary);
   margin-bottom: var(--space-2);
   letter-spacing: -0.02em;
+  text-shadow: 0 0 24px rgba(56, 189, 248, 0.55), 0 0 60px rgba(56, 189, 248, 0.25);
 }
 
 .game-subtitle {
@@ -192,6 +383,8 @@ body {
   box-shadow: var(--shadow-md);
   border: 1px solid var(--color-border);
   overflow: hidden;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 .card-body {
@@ -642,7 +835,7 @@ body {
 /* Móviles pequeños */
 @media (max-width: 360px) {
   :root {
-    --font-size-base: 15px;
+    --font-size-base: 16px;
     --font-size-lg: 17px;
     --font-size-xl: 20px;
     --font-size-2xl: 24px;

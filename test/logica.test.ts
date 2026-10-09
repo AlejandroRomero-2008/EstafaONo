@@ -11,6 +11,7 @@ import {
   continuar,
   reiniciar,
   haGanado,
+  puntuacionPerfecta,
   obtenerProgreso,
   obtenerMensajeFinal,
   obtenerCasoAleatorio,
@@ -281,6 +282,32 @@ describe('Condiciones de victoria/derrota', () => {
   });
 });
 
+describe('Puntuación perfecta (50 puntos)', () => {
+  it('debe ser perfecta con exactamente 50 puntos', () => {
+    const estado = crearEstadoInicial();
+    estado.puntuacion = 50;
+
+    expect(puntuacionPerfecta(estado)).toBe(true);
+  });
+
+  it('no debe ser perfecta con 40 puntos', () => {
+    const estado = crearEstadoInicial();
+    estado.puntuacion = 40;
+
+    expect(puntuacionPerfecta(estado)).toBe(false);
+  });
+
+  it('no debe ser perfecta con 0 puntos', () => {
+    const estado = crearEstadoInicial();
+
+    expect(puntuacionPerfecta(estado)).toBe(false);
+  });
+
+  it('la puntuación máxima debe ser alcanzable (5 rondas x 10 puntos)', () => {
+    expect(CONFIG.PUNTUACION_MAXIMA).toBe(CONFIG.TOTAL_RONDAS * CONFIG.PUNTOS_ACIERTO);
+  });
+});
+
 describe('Progreso', () => {
   it('debe ser 0 al inicio', () => {
     const estado = crearEstadoInicial();
@@ -386,6 +413,7 @@ describe('Constantes y configuración', () => {
   it('debe tener CONFIG con valores correctos', () => {
     expect(CONFIG.TOTAL_RONDAS).toBe(5);
     expect(CONFIG.PUNTOS_ACIERTO).toBe(10);
+    expect(CONFIG.PUNTUACION_MAXIMA).toBe(50);
     expect(CONFIG.PUNTOS_VICTORIA).toBe(30);
     expect(CONFIG.MIN_TOUCH_TARGET).toBe(44);
     expect(CONFIG.MIN_FONT_SIZE).toBe(16);

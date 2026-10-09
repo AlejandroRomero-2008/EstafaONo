@@ -133,6 +133,24 @@ Este archivo documenta los prompts utilizados durante el desarrollo del proyecto
 
 ---
 
+## Prompt 12 - Mejoras visuales: estilo futurista y efectos
+
+**Prompt utilizado (explícito - interacción con usuario):**
+> Quiero que lo mejores, dale un estilo a la pagina mas futurista, con un fondo en movimiento mas llamativa, cuando el usuario se equivoque que en toda la pantalla se le ponga en rojo y le diga Loser, pero temporalmente y después sigue el juego, ahora si le responde correctamente La pantalle se ponga en verde y le diga Bárbaro y que al final saco 50 puntos tire confeti temporalmente
+
+**Propósito:** Rediseño futurista con fondo animado (gradientes, rejilla grid, orbes flotantes), tema oscuro con acentos neón, flash a pantalla completa (rojo «LOSER» / verde «¡Bárbaro!») temporal (1,4 s) integrado en el flujo del juego, y confeti con canvas propio (sin librerías externas) al alcanzar 50/50 puntos.
+
+**Decisiones técnicas:**
+- Toda regla nueva en `logica.ts`: `puntuacionPerfecta()`, `CONFIG.PUNTUACION_MAXIMA`, `CONFIG.DURACION_FLASH_MS`, `CONFIG.DURACION_CONFETI_MS`
+- Confeti implementado con `requestAnimationFrame` + Canvas 2D nativo (0 dependencias)
+- Corregido bug detectado en el rediseño: `messageMeta` revelaba si el mensaje era estafa o no → ahora muestra «Mensaje sin verificar» neutro
+- Accesibilidad reforzada: `--font-size-sm` subido a 16px y base móvil a 16px (mínimo exigido)
+- Tests ampliados de 33 → **37** (4 nuevos para puntuación perfecta)
+
+**Etapa:** Mejora continua
+
+---
+
 ## Resumen de commits realizados
 
 | # | Commit | Archivos principales | Estado |

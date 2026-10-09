@@ -18,6 +18,13 @@ Enseñar a los usuarios a reconocer las señales de alerta en mensajes sospechos
 
 **Puntuación:** +10 puntos por acierto. Se necesitan **30 puntos** (3 de 5) para ganar.
 
+## ✨ Efectos visuales
+
+- **Fondo futurista animado:** gradientes en movimiento, rejilla tipo grid y orbes de luz flotantes
+- **Al responder correctamente:** flash verde a pantalla completa con «¡Bárbaro!» y +10 puntos
+- **Al fallar:** flash rojo a pantalla completa con «LOSER» y vibración de la interfaz
+- **Con 50/50 puntos (nota perfecta):** 🎉 ¡confeti multiplataforma!
+
 ## 🛠️ Tecnologías utilizadas
 
 - **Vite** - Bundler y servidor de desarrollo
@@ -43,7 +50,7 @@ EstafaONo/
 │   ├── logica.ts        # Lógica del juego (separada del DOM)
 │   └── estilo.css       # Estilos responsive y accesibles
 └── test/
-    └── logica.test.ts   # Tests automatizados (33 tests)
+    └── logica.test.ts   # Tests automatizados (37 tests)
 ```
 
 ## ⚙️ Requisitos de instalación
