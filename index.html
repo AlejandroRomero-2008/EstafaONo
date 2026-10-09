@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="¿Estafa o no? - Juego educativo para aprender a identificar estafas digitales, phishing, smishing y fraudes online.">
+  <meta name="theme-color" content="#1e3a5f">
+  <title>¿Estafa o no? - Juego educativo de ciberseguridad</title>
+  <link rel="stylesheet" href="src/estilo.css">
+</head>
+<body>
+  <div class="app" role="application" aria-label="Juego ¿Estafa o no?">
+
+    <!-- ============================================
+         HEADER
+         ============================================ -->
+    <header class="header" role="banner">
+      <h1 class="game-title">¿Estafa o no?</h1>
+      <p class="game-subtitle">Aprende a identificar estafas digitales</p>
+    </header>
+
+    <!-- ============================================
+         PANTALLA: INICIO
+         ============================================ -->
+    <section id="screen-inicio" class="screen card" role="region" aria-label="Pantalla de inicio">
+      <div class="card-body">
+        <div class="instructions">
+          <h2>Cómo jugar</h2>
+          <ul>
+            <li>Lee el mensaje sospechoso que aparece en pantalla</li>
+            <li>Analiza el remitente y el contenido</li>
+            <li>Decide si <strong>«Es una estafa»</strong> o <strong>«Parece legítimo»</strong></li>
+            <li>Recibirás una explicación con las señales clave</li>
+            <li>Completa 5 rondas y mira tu puntuación final</li>
+          </ul>
+        </div>
+        <button id="btn-iniciar" class="btn btn-primary btn-block" style="padding: 16px 24px; font-size: 1.1rem;">
+          Comenzar partida
+        </button>
+      </div>
+    </section>
+
+    <!-- ============================================
+         PANTALLA: PARTIDA
+         ============================================ -->
+    <section id="screen-partida" class="screen card" role="region" aria-label="Partida en curso">
+      <div class="card-body">
+        <!-- Barra de stats -->
+        <div class="stats-bar" role="status" aria-live="polite">
+          <div class="stat-item">
+            <span class="stat-label">Ronda</span>
+            <span id="stat-ronda" class="stat-value">1 / 5</span>
+          </div>
+          <div class="progress-container" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Progreso de la partida">
+            <div class="progress-bar">
+              <div id="progress-fill" class="progress-fill"></div>
+            </div>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Puntos</span>
+            <span id="stat-puntuacion" class="stat-value">0</span>
+          </div>
+        </div>
+
+        <!-- Tarjeta del mensaje -->
+        <article class="card message-card" aria-labelledby="message-sender">
+          <div class="card-body">
+            <div class="message-header">
+              <div id="message-avatar" class="message-avatar" aria-hidden="true">??</div>
+              <div class="message-sender-info">
+                <div id="message-sender" class="message-sender">Remitente</div>
+                <div id="message-meta" class="message-meta">Analizando...</div>
+              </div>
+            </div>
+            <div id="message-content" class="message-content">
+              Cargando mensaje...
+            </div>
+          </div>
+        </article>
+
+        <!-- Botones de respuesta -->
+        <div class="btn-group" role="group" aria-label="Opciones de respuesta">
+          <button id="btn-estafa" class="btn btn-danger btn-block" style="padding: 16px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="15" y1="9" x2="9" y2="15"/>
+              <line x1="9" y1="9" x2="15" y2="15"/>
+            </svg>
+            Es una estafa
+          </button>
+          <button id="btn-legitimo" class="btn btn-success btn-block" style="padding: 16px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+            Parece legítimo
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         PANTALLA: RESPUESTA
+         ============================================ -->
+    <section id="screen-respuesta" class="screen card" role="region" aria-label="Resultado de la respuesta">
+      <div class="card-body">
+        <div id="explanation" class="explanation" role="alert" aria-live="assertive">
+          <div id="explanation-title" class="explanation-title"></div>
+          <p id="explanation-text" class="explanation-text"></p>
+          <div class="explanation-signals">
+            <h4>Señales para identificarlo:</h4>
+            <ul id="explanation-signals"></ul>
+          </div>
+        </div>
+        <button id="btn-continuar" class="btn btn-primary btn-block" style="padding: 16px; margin-top: 16px;">
+          Continuar
+        </button>
+      </div>
+    </section>
+
+    <!-- ============================================
+         PANTALLA: FINAL
+         ============================================ -->
+    <section id="screen-final" class="screen card final-screen" role="region" aria-label="Resultado final">
+      <div class="card-body">
+        <div id="final-icon" class="final-icon" aria-hidden="true"></div>
+        <h2 id="final-title" class="final-title"></h2>
+        <div id="final-score" class="final-score"></div>
+        <p id="final-message" class="final-message"></p>
+        <div class="final-actions">
+          <button id="btn-reiniciar" class="btn btn-primary btn-block" style="padding: 16px; max-width: 300px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="1 4 1 10 7 10"/>
+              <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
+            </svg>
+            Volver a jugar
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer class="footer" role="contentinfo">
+      <p>Proyecto educativo - <a href="https://github.com" target="_blank" rel="noopener">GitHub</a> | Desarrollado con Vite + TypeScript</p>
+    </footer>
+
+  </div>
+
+  <script type="module" src="src/main.ts"></script>
+</body>
+</html>
