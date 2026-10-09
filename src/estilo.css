@@ -636,7 +636,77 @@ body {
 }
 
 /* ============================================
-   RESPONSIVE
+   RESPONSIVE - FUNCIONA CON EL DEDO EN MOVIL
    ============================================ */
 
-/* TODO-responsive */
+/* Móviles pequeños */
+@media (max-width: 360px) {
+  :root {
+    --font-size-base: 15px;
+    --font-size-lg: 17px;
+    --font-size-xl: 20px;
+    --font-size-2xl: 24px;
+    --font-size-3xl: 30px;
+  }
+
+  .card-body {
+    padding: var(--space-4);
+  }
+
+  .btn-group {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-bar {
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    justify-content: center;
+  }
+
+  .progress-container {
+    order: 3;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+  }
+}
+
+/* Tablet y desktop */
+@media (min-width: 600px) {
+  body {
+    padding: var(--space-8);
+  }
+
+  .app {
+    max-width: 560px;
+  }
+
+  .game-title {
+    font-size: var(--font-size-3xl);
+  }
+
+  .card-body {
+    padding: var(--space-8);
+  }
+}
+
+/* Reducir movimiento */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Alto contraste */
+@media (prefers-contrast: high) {
+  :root {
+    --color-border: #000;
+    --shadow-md: 0 0 0 2px #000;
+  }
+
+  .btn {
+    border: 2px solid currentColor;
+  }
+}
